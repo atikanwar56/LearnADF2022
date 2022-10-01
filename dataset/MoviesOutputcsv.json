@@ -1,0 +1,21 @@
+{
+	"name": "MoviesOutputcsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BLOB_training928",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
