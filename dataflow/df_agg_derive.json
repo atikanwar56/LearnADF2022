@@ -26,7 +26,8 @@
 						"referenceName": "MoviesOutputcsv",
 						"type": "DatasetReference"
 					},
-					"name": "MoviesCountByYear"
+					"name": "MoviesCountYear",
+					"description": "Export data to \n"
 				}
 			],
 			"transformations": [
@@ -61,7 +62,7 @@
 				"     partitionFileNames:['MovieCountByYear'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> MoviesCountByYear"
+				"     partitionBy('hash', 1)) ~> MoviesCountYear"
 			]
 		}
 	}
