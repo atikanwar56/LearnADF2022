@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "MoviesOpCSV.csv",
 				"container": "output"
 			},
 			"columnDelimiter": ",",
