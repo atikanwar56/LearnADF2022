@@ -20,7 +20,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "MoviesClean"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          movieId as string,",
@@ -40,7 +44,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> MoviesDB"
+				"     ignoreNoFilesFound: false) ~> MoviesDB",
+				"Movies derive(TitleNew = toString(left(title,length(title)-6))) ~> MoviesClean"
 			]
 		}
 	}
