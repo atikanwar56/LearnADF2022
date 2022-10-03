@@ -14,7 +14,19 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT\n  *\nFROM\n  database_name.INFORMATION_SCHEMA.TABLES\nWHERE table_type = 'BASE TABLE'SELECT\n  *\nFROM\n  EDW.INFORMATION_SCHEMA.TABLES\nWHERE table_type = 'BASE TABLE'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ListTables",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"annotations": []
