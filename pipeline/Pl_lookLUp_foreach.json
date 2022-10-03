@@ -89,7 +89,13 @@
 							"inputs": [
 								{
 									"referenceName": "SQL_Table",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -98,7 +104,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@concat(item()),table_schema,'_',item().table_Name,'.csv')",
+											"value": "@concat(item().table_schema,'_',item().table_name,'.csv')",
 											"type": "Expression"
 										}
 									}
