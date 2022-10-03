@@ -1,0 +1,39 @@
+{
+	"name": "GenericCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BLOB_training928",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1",
+				"type": "String"
+			},
+			{
+				"name": "Toy Story ",
+				"type": "String"
+			},
+			{
+				"name": "Adventure|Animation|Children|Comedy|Fantasy",
+				"type": "String"
+			},
+			{
+				"name": "1995",
+				"type": "String"
+			}
+		]
+	}
+}
