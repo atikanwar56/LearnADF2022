@@ -734,9 +734,9 @@
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> MoviesDB",
-						"Movies derive(TitleNew = toString(left(title,length(title)-6))) ~> MoviesClean",
+						"Movies derive(TitleNew = trim(toString(left(title,length(title)-6)))) ~> MoviesClean",
 						"MoviesClean, MoviesDB join(TitleNew == MoviesDB@title,",
-						"     joinType:'left',",
+						"     joinType:'inner',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> joinMovies",
@@ -753,8 +753,10 @@
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     partitionFileNames:['MoviesOut.csv'],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> MoviesOP"
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> MoviesOP"
 					]
 				}
 			},
