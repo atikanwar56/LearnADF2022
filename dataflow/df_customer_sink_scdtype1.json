@@ -26,6 +26,9 @@
 				},
 				{
 					"name": "exist"
+				},
+				{
+					"name": "lookupCustomerId"
 				}
 			],
 			"scriptLines": [
@@ -67,7 +70,11 @@
 				"CustomerSource derive(Hash = sha2(256,iifNull(Title,'')+iifNull(FirstName,'')+iifNull(MiddleName,'')+iifNull(LastName,'')+iifNull(Suffix,'')+iifNull(CompanyName,'')+iifNull(SalesPerson,'')+iifNull(EmailAddress,'')+iifNull(Phone,''))) ~> CreateHashKey",
 				"CreateHashKey, CustomerSink exists(Hash == HashKey,",
 				"     negate:true,",
-				"     broadcast: 'auto')~> exist"
+				"     broadcast: 'auto')~> exist",
+				"exist, CustomerSink lookup(CustomerSource@CustomerID == CustomerSink@CustomerID,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookupCustomerId"
 			]
 		}
 	}
