@@ -1,0 +1,19 @@
+{
+	"name": "df_customer_sink_scdtype1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "CustomerSource"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> CustomerSource"
+			]
+		}
+	}
+}
