@@ -29,6 +29,9 @@
 				},
 				{
 					"name": "lookupCustomerId"
+				},
+				{
+					"name": "SetDates"
 				}
 			],
 			"scriptLines": [
@@ -74,7 +77,9 @@
 				"exist, CustomerSink lookup(CustomerSource@CustomerID == CustomerSink@CustomerID,",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookupCustomerId"
+				"     broadcast: 'auto')~> lookupCustomerId",
+				"lookupCustomerId derive(InsertedDate = iif(isNull(InsertedDate), currentTimestamp(), InsertedDate),",
+				"          Modifieddate = currentTimestamp()) ~> SetDates"
 			]
 		}
 	}
