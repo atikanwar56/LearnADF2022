@@ -23,6 +23,9 @@
 			"transformations": [
 				{
 					"name": "CreateHashKey"
+				},
+				{
+					"name": "exist"
 				}
 			],
 			"scriptLines": [
@@ -61,7 +64,10 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> CustomerSink",
-				"CustomerSource derive(Hash = sha2(256,iifNull(Title,'')+iifNull(FirstName,'')+iifNull(MiddleName,'')+iifNull(LastName,'')+iifNull(Suffix,'')+iifNull(CompanyName,'')+iifNull(SalesPerson,'')+iifNull(EmailAddress,'')+iifNull(Phone,''))) ~> CreateHashKey"
+				"CustomerSource derive(Hash = sha2(256,iifNull(Title,'')+iifNull(FirstName,'')+iifNull(MiddleName,'')+iifNull(LastName,'')+iifNull(Suffix,'')+iifNull(CompanyName,'')+iifNull(SalesPerson,'')+iifNull(EmailAddress,'')+iifNull(Phone,''))) ~> CreateHashKey",
+				"CreateHashKey, CustomerSink exists(Hash == HashKey,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> exist"
 			]
 		}
 	}
