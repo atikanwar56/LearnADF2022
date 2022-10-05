@@ -32,6 +32,9 @@
 				},
 				{
 					"name": "SetDates"
+				},
+				{
+					"name": "Upsert"
 				}
 			],
 			"scriptLines": [
@@ -79,7 +82,8 @@
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookupCustomerId",
 				"lookupCustomerId derive(InsertedDate = iif(isNull(InsertedDate), currentTimestamp(), InsertedDate),",
-				"          Modifieddate = currentTimestamp()) ~> SetDates"
+				"          Modifieddate = currentTimestamp()) ~> SetDates",
+				"SetDates alterRow(upsertIf(true())) ~> Upsert"
 			]
 		}
 	}
